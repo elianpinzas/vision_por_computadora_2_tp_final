@@ -13,7 +13,7 @@ Comparar dos detectores pre-entrenados en COCO, **YOLOv8** (CNN de una etapa) y 
 | Wildfire Smoke (Roboflow), cámaras HPWREN, clase *smoke* | Entrenamiento, validación y test | _(completar)_ |
 | D-Fire (Brasil), *smoke* y *fire*, incluye imágenes sin ninguno | Prueba externa, sin reentrenar | https://github.com/gaiasd/DFireDataset |
 
-Los datasets no se suben al repo. El notebook `01` los descarga y prepara.
+Los datasets no se suben al repo: los notebooks los descargan en cada sesión de Colab con las funciones de `src/datos.py`.
 
 ## Estructura
 
@@ -26,6 +26,7 @@ Los datasets no se suben al repo. El notebook `01` los descarga y prepara.
 │   ├── 03_train_rtdetr.ipynb
 │   └── 04_evaluacion.ipynb
 ├── src/
+│   ├── datos.py         # descarga y preparación de datasets y pesos
 │   ├── utils.py         # carga de config y semilla
 │   └── demo_video.py    # inferencia sobre video para la demo
 ├── results/             # tablas y figuras finales
@@ -43,11 +44,11 @@ Cada notebook se abre directamente en Google Colab (con GPU T4):
 | 03 · Entrenamiento RT-DETR | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/elianpinzas/vision_por_computadora_2_tp_final/blob/main/notebooks/03_train_rtdetr.ipynb) |
 | 04 · Evaluación | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/elianpinzas/vision_por_computadora_2_tp_final/blob/main/notebooks/04_evaluacion.ipynb) |
 
-Requisitos:
-1. Una API key de Roboflow cargada en los *Secrets* de Colab con el nombre `ROBOFLOW_API_KEY`.
-2. Acceso a la carpeta compartida del grupo en Drive (`TP_humo`), agregada como acceso directo en "Mi unidad".
+Requisitos: cargar en los *Secrets* de Colab (ícono de llave) `ROBOFLOW_API_KEY` y, para D-Fire, `KAGGLE_USERNAME` y `KAGGLE_KEY` (se obtienen en kaggle.com, en Settings → API).
 
-Los pesos entrenados (`best.pt`) se guardan en esa carpeta de Drive, no en GitHub.
+## Pesos entrenados
+
+Los pesos (`yolov8_best.pt`, `rtdetr_best.pt`) y sus `results.csv` y `args.yaml` están en las [Releases](https://github.com/elianpinzas/vision_por_computadora_2_tp_final/releases) del repo. El notebook de evaluación y la demo los descargan solos.
 
 ## Integrantes
 

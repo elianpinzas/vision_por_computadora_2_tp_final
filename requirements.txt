@@ -2,6 +2,7 @@
 # PENDIENTE: fijar las versiones exactas (pip freeze en Colab) cuando el código esté estable.
 ultralytics
 roboflow
+kaggle
 opencv-python
 numpy
 pandas

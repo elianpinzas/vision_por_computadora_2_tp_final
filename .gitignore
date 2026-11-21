@@ -1,6 +1,7 @@
-# Datos y modelos: viven en Drive, no en GitHub
+# Datos y modelos: se descargan en cada sesión; los pesos van en las Releases
 datasets/
 runs/
+pesos/
 *.pt
 *.onnx
 *.engine
@@ -19,6 +20,7 @@ venv/
 
 # Credenciales
 .env
+kaggle.json
 
 # Sistema
 .DS_Store

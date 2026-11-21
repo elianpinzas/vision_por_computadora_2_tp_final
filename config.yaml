@@ -13,8 +13,13 @@ datasets:
     local_dir: datasets/wildfire_smoke
     data_yaml: datasets/wildfire_smoke/data.yaml
   dfire:
-    local_dir: datasets/dfire
-    data_yaml: datasets/dfire/data.yaml   # solo clase smoke, índice 0
+    kaggle_slug: ""            # PENDIENTE: usuario/nombre del dataset en Kaggle
+    raw_dir: datasets/dfire_raw
+    test_images: test/images   # PENDIENTE: verificar las rutas dentro de la descarga
+    test_labels: test/labels
+    smoke_class_index: null    # PENDIENTE: verificar en el dataset qué índice es smoke
+    local_dir: datasets/dfire  # versión preparada: solo smoke, índice 0
+    data_yaml: datasets/dfire/data.yaml
 
 models:
   yolov8: yolov8s.pt           # PENDIENTE: escala (n / s / m)
@@ -25,7 +30,7 @@ train:
   epochs: 50                   # PENDIENTE
   batch: 8                     # bajarlo para los dos si RT-DETR no entra en la T4
   patience: 15                 # early stopping
-  # PENDIENTE: optimizador. Tiene que ser el mismo para los dos modelos.
+  # PENDIENTE: optimizador. El mismo para los dos modelos, o cada uno con el recomendado.
   # Opciones: SGD (lr0 ~0.01) o AdamW (lr0 ~0.0001). Conviene probar ambos
   # unas pocas épocas antes de decidir.
   optimizer: SGD
@@ -35,8 +40,12 @@ eval:
   conf: 0.25                   # PENDIENTE: umbral de confianza para P, R, F1 y la demo
   iou: 0.7                     # umbral de IoU para la NMS
 
+release:
+  # Los pesos entrenados se suben como Release del repo con estos nombres:
+  # yolov8_best.pt y rtdetr_best.pt (más sus results.csv y args.yaml)
+  repo: elianpinzas/vision_por_computadora_2_tp_final
+  tag: pesos-v1
+
 paths:
   runs: runs
-  # Carpeta compartida del grupo en Drive. Cada uno tiene que agregar el acceso
-  # directo en "Mi unidad" para que aparezca con esta ruta.
-  drive_root: /content/drive/MyDrive/TP_humo
+  weights: pesos
