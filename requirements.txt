@@ -1,0 +1,9 @@
+# Dependencias del proyecto.
+# PENDIENTE: fijar las versiones exactas (pip freeze en Colab) cuando el código esté estable.
+ultralytics
+roboflow
+opencv-python
+numpy
+pandas
+matplotlib
+pyyaml

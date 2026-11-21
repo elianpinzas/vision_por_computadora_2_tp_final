@@ -1,0 +1,32 @@
+# Datos y modelos: viven en Drive, no en GitHub
+datasets/
+runs/
+*.pt
+*.onnx
+*.engine
+
+# Videos y archivos pesados
+*.mp4
+*.avi
+*.zip
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+venv/
+
+# Credenciales
+.env
+
+# Sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Compilación de LaTeX
+paper/*.aux
+paper/*.log
+paper/*.out
+paper/*.synctex.gz
