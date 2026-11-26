@@ -10,7 +10,7 @@ Comparar dos detectores pre-entrenados en COCO, **YOLOv8** (CNN de una etapa) y 
 
 | Dataset | Uso | Link |
 |---|---|---|
-| Wildfire Smoke (Roboflow), cámaras HPWREN, clase *smoke* | Entrenamiento, validación y test | _(completar)_ |
+| Wildfire Smoke (Roboflow), cámaras HPWREN, clase *smoke* | Entrenamiento, validación y test | https://universe.roboflow.com/brad-dwyer/wildfire-smoke |
 | D-Fire (Brasil), *smoke* y *fire*, incluye imágenes sin ninguno | Prueba externa, sin reentrenar | https://github.com/gaiasd/DFireDataset |
 
 Los datasets no se suben al repo: los notebooks los descargan en cada sesión de Colab con las funciones de `src/datos.py`.
