@@ -6,10 +6,10 @@ seed: 42
 
 datasets:
   wildfire_smoke:
-    # PENDIENTE: completar con los datos del proyecto en Roboflow
-    workspace: ""
-    project: ""
-    version: 1                 # todos descargan SIEMPRE esta versión
+    # https://universe.roboflow.com/brad-dwyer/wildfire-smoke
+    workspace: brad-dwyer
+    project: wildfire-smoke
+    version: 1                 # única versión publicada en Roboflow
     local_dir: datasets/wildfire_smoke
     data_yaml: datasets/wildfire_smoke/data.yaml
   dfire:
