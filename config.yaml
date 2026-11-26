@@ -6,9 +6,9 @@ seed: 42
 
 datasets:
   wildfire_smoke:
-    # PENDIENTE: completar con los datos del proyecto en Roboflow
-    workspace: ""
-    project: ""
+    # completar con los datos del proyecto en Roboflow
+    workspace: "gonzalo-rodriguez-rmwav"
+    project: "wildfire-smoke-v8d0m-neiwz"
     version: 1                 # todos descargan SIEMPRE esta versión
     local_dir: datasets/wildfire_smoke
     data_yaml: datasets/wildfire_smoke/data.yaml
@@ -20,6 +20,20 @@ datasets:
     smoke_class_index: null    # PENDIENTE: verificar en el dataset qué índice es smoke
     local_dir: datasets/dfire  # versión preparada: solo smoke, índice 0
     data_yaml: datasets/dfire/data.yaml
+
+division:
+  # División de Wildfire Smoke por cámara (src/division.py, notebook 00).
+  # Ver results/split_por_camara.csv para la asignación de cada imagen.
+  umbral_gemela: 4             # distancia de Hamming máxima entre dHash (256 bits) para
+                               # considerar dos imágenes "casi iguales" (0 = idénticas)
+  umbrales_sensibilidad: [2, 4, 6, 8]   # se informa cuántas gemelas hay con cada umbral
+  umbral_camara: 0.90          # similitud coseno del paisaje para unir dos imágenes en la misma cámara
+  min_camaras_val_test: 3      # cámaras mínimas en valid y en test
+  objetivo: {train: 0.70, valid: 0.20, test: 0.10}
+  intentos: 50000              # asignaciones al azar probadas (con la semilla global)
+  csv: results/split_por_camara.csv
+  local_dir: datasets/wildfire_smoke_camara
+  data_yaml: datasets/wildfire_smoke_camara/data.yaml
 
 models:
   yolov8: yolov8s.pt           # PENDIENTE: escala (n / s / m)
