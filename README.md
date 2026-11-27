@@ -15,21 +15,27 @@ Comparar dos detectores pre-entrenados en COCO, **YOLOv8** (CNN de una etapa) y 
 
 Los datasets no se suben al repo: los notebooks los descargan en cada sesión de Colab con las funciones de `src/datos.py`.
 
+**División por cámara.** No se usa el split original de Roboflow porque tiene imágenes casi idénticas entre train, valid y test (fotos de la misma cámara con segundos de diferencia), lo que infla las métricas. Las imágenes se agrupan en 19 cámaras y se reparten cámaras enteras: train 516 imágenes (13 cámaras), valid 146 (3) y test 75 (3). La asignación está en `results/split_por_camara.csv` y la genera `notebooks/00_division_eventos.ipynb`. Para entrenar o evaluar se usa `division.preparar_wildfire_por_camara(cfg, DATA_DIR)`, que arma `datasets/wildfire_smoke_camara/data.yaml`.
+
 ## Estructura
 
 ```
 ├── config.yaml          # configuración común (hiperparámetros, versiones, rutas)
 ├── requirements.txt
 ├── notebooks/
+│   ├── 00_division_eventos.ipynb
 │   ├── 01_datos_eda.ipynb
 │   ├── 02_train_yolov8.ipynb
 │   ├── 03_train_rtdetr.ipynb
 │   └── 04_evaluacion.ipynb
 ├── src/
 │   ├── datos.py         # descarga y preparación de datasets y pesos
+│   ├── division.py      # división del dataset por cámara (sin fuga entre splits)
 │   ├── utils.py         # carga de config y semilla
 │   └── demo_video.py    # inferencia sobre video para la demo
 ├── results/             # tablas y figuras finales
+│   ├── split_por_camara.csv   # split asignado a cada imagen
+│   └── division/              # figuras de la división
 └── paper/               # informe en formato IEEE
 ```
 
@@ -39,6 +45,7 @@ Cada notebook se abre directamente en Google Colab (con GPU T4):
 
 | Notebook | |
 |---|---|
+| 00 · División por cámara | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/elianpinzas/vision_por_computadora_2_tp_final/blob/main/notebooks/00_division_eventos.ipynb) |
 | 01 · Datos y EDA | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/elianpinzas/vision_por_computadora_2_tp_final/blob/main/notebooks/01_datos_eda.ipynb) |
 | 02 · Entrenamiento YOLOv8 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/elianpinzas/vision_por_computadora_2_tp_final/blob/main/notebooks/02_train_yolov8.ipynb) |
 | 03 · Entrenamiento RT-DETR | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/elianpinzas/vision_por_computadora_2_tp_final/blob/main/notebooks/03_train_rtdetr.ipynb) |
